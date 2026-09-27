@@ -10,4 +10,4 @@ Assignments are organized by topic or week. See the source files for details and
 
 ## Usage
 
-Open the project in your preferred Java IDE (e.g., IntelliJ IDEA or Eclipse) and run the relevant classes to test the implementations.
+Store my assignments from **Algorithms and Data Structures** course (Algodat).
