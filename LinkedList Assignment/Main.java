@@ -24,7 +24,7 @@ public class Main {
         if (c != null) {
             System.out.println(c.getName() + " top speed: " + c.getTopSpeed() + " Weight: " + c.getWeight());
         }
-        System.out.println("=== GET CAR AT INDEX 0 ===");
+        System.out.println("=== GET DRIVER AT INDEX 0 ===");
         Driver d = (Driver) driverList.getAt(0);
         if (d != null) {
             System.out.println(d.getName() + " Wdc: " + d.getWdc() + " Active: " + d.getActive());
