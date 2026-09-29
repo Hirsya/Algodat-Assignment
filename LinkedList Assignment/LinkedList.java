@@ -1,8 +1,8 @@
-public class LinkedList {
+public abstract class LinkedList {
     Node head = null;
     Node tail = null;
 
-    void insertNode(Node newNode){
+    void add(Node newNode){
         if (head==null){
             head = newNode;
             tail = newNode;
@@ -14,6 +14,18 @@ public class LinkedList {
 
     Node getHead (){
         return head;
+    }
+
+    Entity getAt(int index){
+        if (index < 0 || index >= count()){
+            System.out.println("Index out of range");
+            return null;
+        }
+        Node current = head;
+        for (int i = 0; i < index; i++){
+            current = current.nextNode;
+        }
+        return current.getData();
     }
 
     void displayLinkedList (){
@@ -28,19 +40,19 @@ public class LinkedList {
         }
     }
 
-    void searchLinkedList(int key){
+    void searchLinkedList(Entity key){
         boolean exist = false;
         if(head != null){
             Node current = head;
             while (current!=null){
-                if(current.getData() == key ){exist = true;}
+                if(current.getData().equals(key)){exist = true;}
                 current = current.nextNode;
             }
         }
         if (exist == true){
-            System.out.println("Data : " + key + " Is found");
+            System.out.println(key + " Is found");
         }else{
-            System.out.println("Data : " + key + " Not found");
+            System.out.println(key + " Not found");
             
         }
     }
@@ -69,7 +81,7 @@ public class LinkedList {
             head = newNode;
             if (tail == null){tail = newNode;}
         }else if(index == count()){
-            insertNode(newNode);
+            add(newNode);
         }else{
             Node current = head;
             for (int i = 0; i < index - 1; i++) {
@@ -80,35 +92,34 @@ public class LinkedList {
         }
     }
     
-    void delete(int key){
+    void delete(Entity key){
         if (head == null){
             System.out.println("No LinkedList has been stored.");
             return;
         }
 
-        if (head.getData() == key){
+        if (head.getData().equals(key)){
             head = head.nextNode;
             if (head == null){
                 tail = null;
             }
-            System.out.println("Data : " + key + " deleted");
+            System.out.println(key + " deleted");
             return;
         }
         Node prev = head;
         Node current = head.nextNode;
         while (current != null){
-            if (current.getData() == key){
+            if (current.getData().equals(key)){
                 prev.nextNode = current.nextNode; 
                 if (current == tail){            
                     tail = prev;                  
                 }
-                System.out.println("Data : " + key + " deleted");
+                System.out.println(key + " deleted");
                 return;
             }
             prev = current;              
             current = current.nextNode;  
         }
-        System.out.println("Data : " + key + " not found");
+        System.out.println(key + " not found");
     }
-
 }

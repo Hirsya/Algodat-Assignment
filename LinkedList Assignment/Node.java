@@ -1,10 +1,11 @@
 class Node {
     //link to the next node
-    private int data;
-    Node nextNode = null;
+    private Entity data;
+    Node nextNode;
     //data
-    Node (int dataInput){
+    Node (Entity dataInput){
         data = dataInput;
+        this.nextNode = null;
     }
 
     void checkData(){
@@ -19,7 +20,7 @@ class Node {
         return nextNode;
     }
 
-    int getData(){
+    Entity getData(){
         return data;
     }
 }

@@ -1,119 +1,60 @@
-import java.util.Scanner;
-
 public class Main {
-    static Scanner input = new Scanner(System.in);
-    static LinkedList list = new LinkedList();
-
     public static void main(String[] args) {
-        // Data Dummy
-        list.insertNode(new Node(10));
-        list.insertNode(new Node(20));
-        list.insertNode(new Node(30));
+        LinkedList carList = new LinkedList(){};
+        LinkedList driverList = new LinkedList(){};
 
-        int choice;
-        do {
-            clearScreen();         
-            printMenu();
-            System.out.print("Choose menu: ");
-            choice = readInt();
+        // Add data
+        carList.add(new Node(new Car("Red Bull", 320, 800)));
+        carList.add(new Node(new Car("Ferrari", 340, 780)));
+        carList.add(new Node(new Car("Mercedes", 330, 790)));
 
-            clearScreen();         
-            switch (choice) {
-                case 1:
-                    insertNodeMenu();
-                    break;
-                case 2:
-                    insertAtMenu();
-                    break;
-                case 3:
-                    deleteMenu();
-                    break;
-                case 4:
-                    searchMenu();
-                    break;
-                case 5:
-                    System.out.println("=== LINKED LIST CONTENT ===");
-                    list.displayLinkedList();
-                    break;
-                case 6:
-                    System.out.println("Number of nodes: " + list.count());
-                    break;
-                case 0:
-                    System.out.println("Exiting. Thank you!");
-                    break;
-                default:
-                    System.out.println("Menu not available.");
-            }
+        driverList.add(new Node(new Driver("Max Verstappen", 4,true)));
+        driverList.add(new Node(new Driver("Lewis Hamilton",7,true)));
 
-            if (choice != 0) {
-                pause();          
-            }
-        } while (choice != 0);
-    }
+        // Display
+        System.out.println("=== CAR LIST ===");
+        carList.displayLinkedList();
 
-    // Prints the menu options.
-    static void printMenu() {
-        System.out.println("========================================");
-        System.out.println("         LINKED LIST - MAIN MENU        ");
-        System.out.println("========================================");
-        System.out.println(" 1. Insert node (append at the back)");
-        System.out.println(" 2. Insert at index");
-        System.out.println(" 3. Delete node");
-        System.out.println(" 4. Search node");
-        System.out.println(" 5. Display list");
-        System.out.println(" 6. Count node");
-        System.out.println(" 0. Exit");
-        System.out.println("========================================");
-    }
+        System.out.println("=== DRIVER LIST ===");
+        driverList.displayLinkedList();
 
-    static void insertNodeMenu() {
-        System.out.println("=== INSERT NODE ===");
-        System.out.print("Enter data: ");
-        int data = readInt();
-        list.insertNode(new Node(data));
-        System.out.println("Data " + data + " added successfully.");
-    }
-
-    static void insertAtMenu() {
-        System.out.println("=== INSERT AT INDEX ===");
-        System.out.print("Enter index: ");
-        int index = readInt();
-        System.out.print("Enter data : ");
-        int data = readInt();
-        list.insertAt(index, new Node(data));
-    }
-
-    static void deleteMenu() {
-        System.out.println("=== DELETE NODE ===");
-        System.out.print("Enter data to delete: ");
-        int data = readInt();
-        list.delete(data);
-    }
-
-    static void searchMenu() {
-        System.out.println("=== SEARCH NODE ===");
-        System.out.print("Enter data to search: ");
-        int data = readInt();
-        list.searchLinkedList(data);
-    }
-
-    static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
-
-    static void pause() {
-        System.out.print("\nPress Enter to return to the menu...");
-        input.nextLine();
-    }
-
-    static int readInt() {
-        while (true) {
-            try {
-                return Integer.parseInt(input.nextLine().trim());
-            } catch (NumberFormatException e) {
-                System.out.print("Input must be a number. Try again: ");
-            }
+        // Get data by index
+        System.out.println("=== GET CAR AT INDEX 2 ===");
+        Car c = (Car) carList.getAt(2);
+        if (c != null) {
+            System.out.println(c.getName() + " top speed: " + c.getTopSpeed() + " Weight: " + c.getWeight());
         }
+        System.out.println("=== GET CAR AT INDEX 0 ===");
+        Driver d = (Driver) driverList.getAt(0);
+        if (d != null) {
+            System.out.println(d.getName() + " Wdc: " + d.getWdc() + " Active: " + d.getActive());
+        }
+
+        // Insert at index
+        System.out.println("=== insert car at index(1, McLaren) ===");
+        carList.insertAt(1, new Node(new Car("McLaren", 335, 785)));
+        carList.displayLinkedList();
+        System.out.println("=== insert driver at index(0, Fernando Alonso) ===");
+        driverList.insertAt(0,new Node(new Driver("Fernando Alonso",2,true)));
+        driverList.displayLinkedList();
+        
+        // Search
+        System.out.println("=== SEARCH ===");
+        carList.searchLinkedList(new Car("Ferrari"));
+        carList.searchLinkedList(new Car("Toyota"));
+        driverList.searchLinkedList(new Driver("Max Verstappen"));
+        driverList.searchLinkedList(new Driver("Daniel Riccardo"));
+
+        // Delete
+        System.out.println("=== DELETE Ferrari & Lewis Hamilton ===");
+        carList.delete(new Car("Ferrari"));
+        carList.displayLinkedList();
+        driverList.delete(new Driver("Lewis Hamilton"));
+        driverList.displayLinkedList();
+
+        // Count
+        System.out.println("=== COUNT ===");
+        System.out.println("cars   : " + carList.count());
+        System.out.println("drivers: " + driverList.count());
     }
 }
