@@ -2,12 +2,24 @@
 
 This repository contains my assignments for the **Algorithms and Data Structures** course (Algodat).
 
-Each assignment focuses on implementing and analyzing fundamental algorithms and data structures, such as sorting, searching, trees, graphs, and complexity analysis.
+Each assignment focuses on implementing and analyzing fundamental algorithms and data structures in Java, such as linked lists, stacks, trees, graphs, searching, sorting, and complexity analysis.
 
 ## Structure
 
-Assignments are organized by topic or week. See the source files for details and instructions.
+Assignments are organized by topic. See each folder's README for details.
+
+- [`LinkedList Assignment`](./LinkedList%20Assignment) — Singly linked list applied as an Abstract Data Type (ADT) with `Car` and `Driver` entities, covering insert, delete, search, and traversal.
+- [`Stack Assignment`](./Stack%20Assignment) — Generic `Stack<T>` (LIFO) used for parenthesis matching, infix-to-postfix conversion, and postfix evaluation.
 
 ## Usage
 
 Store my assignments from **Algorithms and Data Structures** course (Algodat).
+
+Every assignment is plain Java with no external dependencies. To run one, open its folder and compile the sources:
+
+```bash
+javac *.java
+java Main
+```
+
+Each folder's README documents its own classes, run instructions, and sample output in more detail.
