@@ -1,98 +1,171 @@
-import java.util.Arrays;
-
 public class Main {
     public static void main(String[] args) {
         int[] data = {5, 2, 9, 1, 5, 6};
-        System.out.println("Acak         : " + Arrays.toString(data));
+        System.out.println("Acak         : " + listToString(toList(data)));
         runAll(data);
 
         System.out.println();
         int[] reversed = {5, 4, 3, 2, 1};
-        System.out.println("Terbalik     : " + Arrays.toString(reversed));
+        System.out.println("Terbalik     : " + listToString(toList(reversed)));
         runAll(reversed);
 
         System.out.println();
         int[] sorted = {1, 2, 3, 4, 5};
-        System.out.println("Sudah urut   : " + Arrays.toString(sorted));
+        System.out.println("Sudah urut   : " + listToString(toList(sorted)));
         runAll(sorted);
 
         System.out.println();
         int[] negative = {-3, 0, -10, 7, -3};
-        System.out.println("Negatif      : " + Arrays.toString(negative));
+        System.out.println("Negatif      : " + listToString(toList(negative)));
         runAll(negative);
 
         System.out.println();
         System.out.println("== Tipe primitif lain ==");
 
         long[] longs = {5000000000L, 12L, 750L};
-        System.out.println("Long awal    : " + Arrays.toString(longs));
-        InsertionSort.sort(longs);
-        System.out.println("Insertion    : " + Arrays.toString(longs));
+        System.out.println("Long awal    : " + listToString(toList(longs)));
+        System.out.println("Insertion    : " + listToString(InsertionSort.sort(toList(longs))));
 
         double[] doubles = {3.5, 1.2, 9.9, 2.0};
-        System.out.println("Double awal  : " + Arrays.toString(doubles));
-        MergeSort.sort(doubles);
-        System.out.println("Merge        : " + Arrays.toString(doubles));
+        System.out.println("Double awal  : " + listToString(toList(doubles)));
+        System.out.println("Merge        : " + listToString(MergeSort.sort(toList(doubles))));
 
         float[] floats = {2.5f, 0.5f, 4.0f};
-        System.out.println("Float awal   : " + Arrays.toString(floats));
-        ShellSort.sort(floats);
-        System.out.println("Shell        : " + Arrays.toString(floats));
+        System.out.println("Float awal   : " + listToString(toList(floats)));
+        System.out.println("Shell        : " + listToString(ShellSort.sort(toList(floats))));
 
         System.out.println();
         System.out.println("== Kasus tepi ==");
 
-        int[] empty = {};
-        BubbleSort.sort(empty);
-        SelectionSort.sort(empty);
-        InsertionSort.sort(empty);
-        ShellSort.sort(empty);
-        MergeSort.sort(empty);
-        QuickSort.sort(empty);
-        System.out.println("Array kosong : " + Arrays.toString(empty));
+        System.out.println("List kosong  : " + listToString(toList(new int[]{})));
+        runAll(new int[]{});
 
-        int[] single = {7};
-        BubbleSort.sort(single);
-        SelectionSort.sort(single);
-        InsertionSort.sort(single);
-        ShellSort.sort(single);
-        MergeSort.sort(single);
-        QuickSort.sort(single);
-        System.out.println("Satu elemen  : " + Arrays.toString(single));
+        System.out.println("Satu elemen  : " + listToString(toList(new int[]{7})));
+        runAll(new int[]{7});
 
-        int[] nullArray = null;
-        BubbleSort.sort(nullArray);
-        SelectionSort.sort(nullArray);
-        InsertionSort.sort(nullArray);
-        ShellSort.sort(nullArray);
-        MergeSort.sort(nullArray);
-        QuickSort.sort(nullArray);
-        System.out.println("Array null   : tidak error");
+        System.out.println("List null    : tidak error");
+        BubbleSort.sort((IntNode) null);
+        SelectionSort.sort((IntNode) null);
+        InsertionSort.sort((IntNode) null);
+        ShellSort.sort((IntNode) null);
+        MergeSort.sort((IntNode) null);
+        QuickSort.sort((IntNode) null);
     }
 
     private static void runAll(int[] data) {
-        int[] bubble = data.clone();
-        BubbleSort.sort(bubble);
-        System.out.println("  Bubble     : " + Arrays.toString(bubble));
+        System.out.println("  Bubble     : " + listToString(BubbleSort.sort(toList(data))));
+        System.out.println("  Selection  : " + listToString(SelectionSort.sort(toList(data))));
+        System.out.println("  Insertion  : " + listToString(InsertionSort.sort(toList(data))));
+        System.out.println("  Shell      : " + listToString(ShellSort.sort(toList(data))));
+        System.out.println("  Merge      : " + listToString(MergeSort.sort(toList(data))));
+        System.out.println("  Quick      : " + listToString(QuickSort.sort(toList(data))));
+    }
 
-        int[] selection = data.clone();
-        SelectionSort.sort(selection);
-        System.out.println("  Selection  : " + Arrays.toString(selection));
+    private static IntNode toList(int[] array) {
+        IntNode head = null;
+        IntNode tail = null;
+        for (int value : array) {
+            IntNode node = new IntNode(value);
+            if (head == null) {
+                head = node;
+            } else {
+                node.prev = tail;
+                tail.next = node;
+            }
+            tail = node;
+        }
+        return head;
+    }
 
-        int[] insertion = data.clone();
-        InsertionSort.sort(insertion);
-        System.out.println("  Insertion  : " + Arrays.toString(insertion));
+    private static LongNode toList(long[] array) {
+        LongNode head = null;
+        LongNode tail = null;
+        for (long value : array) {
+            LongNode node = new LongNode(value);
+            if (head == null) {
+                head = node;
+            } else {
+                node.prev = tail;
+                tail.next = node;
+            }
+            tail = node;
+        }
+        return head;
+    }
 
-        int[] shell = data.clone();
-        ShellSort.sort(shell);
-        System.out.println("  Shell      : " + Arrays.toString(shell));
+    private static FloatNode toList(float[] array) {
+        FloatNode head = null;
+        FloatNode tail = null;
+        for (float value : array) {
+            FloatNode node = new FloatNode(value);
+            if (head == null) {
+                head = node;
+            } else {
+                node.prev = tail;
+                tail.next = node;
+            }
+            tail = node;
+        }
+        return head;
+    }
 
-        int[] merge = data.clone();
-        MergeSort.sort(merge);
-        System.out.println("  Merge      : " + Arrays.toString(merge));
+    private static DoubleNode toList(double[] array) {
+        DoubleNode head = null;
+        DoubleNode tail = null;
+        for (double value : array) {
+            DoubleNode node = new DoubleNode(value);
+            if (head == null) {
+                head = node;
+            } else {
+                node.prev = tail;
+                tail.next = node;
+            }
+            tail = node;
+        }
+        return head;
+    }
 
-        int[] quick = data.clone();
-        QuickSort.sort(quick);
-        System.out.println("  Quick      : " + Arrays.toString(quick));
+    private static String listToString(IntNode head) {
+        StringBuilder sb = new StringBuilder("[");
+        for (IntNode cur = head; cur != null; cur = cur.next) {
+            sb.append(cur.data);
+            if (cur.next != null) {
+                sb.append(", ");
+            }
+        }
+        return sb.append("]").toString();
+    }
+
+    private static String listToString(LongNode head) {
+        StringBuilder sb = new StringBuilder("[");
+        for (LongNode cur = head; cur != null; cur = cur.next) {
+            sb.append(cur.data);
+            if (cur.next != null) {
+                sb.append(", ");
+            }
+        }
+        return sb.append("]").toString();
+    }
+
+    private static String listToString(FloatNode head) {
+        StringBuilder sb = new StringBuilder("[");
+        for (FloatNode cur = head; cur != null; cur = cur.next) {
+            sb.append(cur.data);
+            if (cur.next != null) {
+                sb.append(", ");
+            }
+        }
+        return sb.append("]").toString();
+    }
+
+    private static String listToString(DoubleNode head) {
+        StringBuilder sb = new StringBuilder("[");
+        for (DoubleNode cur = head; cur != null; cur = cur.next) {
+            sb.append(cur.data);
+            if (cur.next != null) {
+                sb.append(", ");
+            }
+        }
+        return sb.append("]").toString();
     }
 }

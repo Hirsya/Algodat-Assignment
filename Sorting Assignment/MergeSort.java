@@ -1,145 +1,213 @@
 public class MergeSort {
-    public static void sort(int[] array) {
-        if (array == null || array.length < 2) {
-            return;
+    public static IntNode sort(IntNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        int mid = array.length / 2;
-        int[] left = new int[mid];
-        for (int i = 0; i < mid; i++) {
-            left[i] = array[i];
-        }
-
-        int[] right = new int[array.length - mid];
-        for (int i = mid; i < array.length; i++) {
-            right[i - mid] = array[i];
-        }
-
-        sort(left);
-        sort(right);
-        merge(array, left, right);
+        IntNode right = split(head);
+        IntNode left = sort(head);
+        right = sort(right);
+        return merge(left, right);
     }
 
-    static void merge(int[] array, int[] left, int[] right) {
-        int i = 0, j = 0, k = 0;
+    static IntNode split(IntNode head) {
+        IntNode slow = head;
+        IntNode fast = head.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
 
-        while (i < left.length && j < right.length) {
-            if (left[i] <= right[j]) {
-                array[k++] = left[i++];
+        IntNode right = slow.next;
+        slow.next = null;
+        right.prev = null;
+        return right;
+    }
+
+    static IntNode merge(IntNode a, IntNode b) {
+        IntNode dummy = new IntNode(0);
+        IntNode tail = dummy;
+
+        while (a != null && b != null) {
+            if (a.data <= b.data) {
+                tail.next = a;
+                a.prev = tail;
+                a = a.next;
             } else {
-                array[k++] = right[j++];
+                tail.next = b;
+                b.prev = tail;
+                b = b.next;
             }
+            tail = tail.next;
         }
 
-        while (i < left.length)  array[k++] = left[i++];
-        while (j < right.length) array[k++] = right[j++];
+        IntNode rest = (a != null) ? a : b;
+        tail.next = rest;
+        if (rest != null) {
+            rest.prev = tail;
+        }
+
+        IntNode result = dummy.next;
+        result.prev = null;
+        return result;
     }
 
-    public static void sort(long[] array) {
-        if (array == null || array.length < 2) {
-            return;
+    public static LongNode sort(LongNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        int mid = array.length / 2;
-        long[] left = new long[mid];
-        for (int i = 0; i < mid; i++) {
-            left[i] = array[i];
-        }
-
-        long[] right = new long[array.length - mid];
-        for (int i = mid; i < array.length; i++) {
-            right[i - mid] = array[i];
-        }
-
-        sort(left);
-        sort(right);
-        merge(array, left, right);
+        LongNode right = split(head);
+        LongNode left = sort(head);
+        right = sort(right);
+        return merge(left, right);
     }
 
-    static void merge(long[] array, long[] left, long[] right) {
-        int i = 0, j = 0, k = 0;
+    static LongNode split(LongNode head) {
+        LongNode slow = head;
+        LongNode fast = head.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
 
-        while (i < left.length && j < right.length) {
-            if (left[i] <= right[j]) {
-                array[k++] = left[i++];
+        LongNode right = slow.next;
+        slow.next = null;
+        right.prev = null;
+        return right;
+    }
+
+    static LongNode merge(LongNode a, LongNode b) {
+        LongNode dummy = new LongNode(0L);
+        LongNode tail = dummy;
+
+        while (a != null && b != null) {
+            if (a.data <= b.data) {
+                tail.next = a;
+                a.prev = tail;
+                a = a.next;
             } else {
-                array[k++] = right[j++];
+                tail.next = b;
+                b.prev = tail;
+                b = b.next;
             }
+            tail = tail.next;
         }
 
-        while (i < left.length)  array[k++] = left[i++];
-        while (j < right.length) array[k++] = right[j++];
+        LongNode rest = (a != null) ? a : b;
+        tail.next = rest;
+        if (rest != null) {
+            rest.prev = tail;
+        }
+
+        LongNode result = dummy.next;
+        result.prev = null;
+        return result;
     }
 
-    public static void sort(float[] array) {
-        if (array == null || array.length < 2) {
-            return;
+    public static FloatNode sort(FloatNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        int mid = array.length / 2;
-        float[] left = new float[mid];
-        for (int i = 0; i < mid; i++) {
-            left[i] = array[i];
-        }
-
-        float[] right = new float[array.length - mid];
-        for (int i = mid; i < array.length; i++) {
-            right[i - mid] = array[i];
-        }
-
-        sort(left);
-        sort(right);
-        merge(array, left, right);
+        FloatNode right = split(head);
+        FloatNode left = sort(head);
+        right = sort(right);
+        return merge(left, right);
     }
 
-    static void merge(float[] array, float[] left, float[] right) {
-        int i = 0, j = 0, k = 0;
+    static FloatNode split(FloatNode head) {
+        FloatNode slow = head;
+        FloatNode fast = head.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
 
-        while (i < left.length && j < right.length) {
-            if (left[i] <= right[j]) {
-                array[k++] = left[i++];
+        FloatNode right = slow.next;
+        slow.next = null;
+        right.prev = null;
+        return right;
+    }
+
+    static FloatNode merge(FloatNode a, FloatNode b) {
+        FloatNode dummy = new FloatNode(0f);
+        FloatNode tail = dummy;
+
+        while (a != null && b != null) {
+            if (a.data <= b.data) {
+                tail.next = a;
+                a.prev = tail;
+                a = a.next;
             } else {
-                array[k++] = right[j++];
+                tail.next = b;
+                b.prev = tail;
+                b = b.next;
             }
+            tail = tail.next;
         }
 
-        while (i < left.length)  array[k++] = left[i++];
-        while (j < right.length) array[k++] = right[j++];
+        FloatNode rest = (a != null) ? a : b;
+        tail.next = rest;
+        if (rest != null) {
+            rest.prev = tail;
+        }
+
+        FloatNode result = dummy.next;
+        result.prev = null;
+        return result;
     }
 
-    public static void sort(double[] array) {
-        if (array == null || array.length < 2) {
-            return;
+    public static DoubleNode sort(DoubleNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        int mid = array.length / 2;
-        double[] left = new double[mid];
-        for (int i = 0; i < mid; i++) {
-            left[i] = array[i];
-        }
-
-        double[] right = new double[array.length - mid];
-        for (int i = mid; i < array.length; i++) {
-            right[i - mid] = array[i];
-        }
-
-        sort(left);
-        sort(right);
-        merge(array, left, right);
+        DoubleNode right = split(head);
+        DoubleNode left = sort(head);
+        right = sort(right);
+        return merge(left, right);
     }
 
-    static void merge(double[] array, double[] left, double[] right) {
-        int i = 0, j = 0, k = 0;
+    static DoubleNode split(DoubleNode head) {
+        DoubleNode slow = head;
+        DoubleNode fast = head.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
 
-        while (i < left.length && j < right.length) {
-            if (left[i] <= right[j]) {
-                array[k++] = left[i++];
+        DoubleNode right = slow.next;
+        slow.next = null;
+        right.prev = null;
+        return right;
+    }
+
+    static DoubleNode merge(DoubleNode a, DoubleNode b) {
+        DoubleNode dummy = new DoubleNode(0.0);
+        DoubleNode tail = dummy;
+
+        while (a != null && b != null) {
+            if (a.data <= b.data) {
+                tail.next = a;
+                a.prev = tail;
+                a = a.next;
             } else {
-                array[k++] = right[j++];
+                tail.next = b;
+                b.prev = tail;
+                b = b.next;
             }
+            tail = tail.next;
         }
 
-        while (i < left.length)  array[k++] = left[i++];
-        while (j < right.length) array[k++] = right[j++];
+        DoubleNode rest = (a != null) ? a : b;
+        tail.next = rest;
+        if (rest != null) {
+            rest.prev = tail;
+        }
+
+        DoubleNode result = dummy.next;
+        result.prev = null;
+        return result;
     }
 }

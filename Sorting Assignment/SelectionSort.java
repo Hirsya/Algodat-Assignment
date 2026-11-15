@@ -1,90 +1,93 @@
 public class SelectionSort {
-    public static void sort(int[] array) {
-        if (array == null || array.length < 2) {
-            return;
+    public static IntNode sort(IntNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        int n = array.length;
-        for (int i = 0; i < n - 1; i++) {
-            int minIndex = i;
-
-            for (int j = i + 1; j < n; j++) {
-                if (array[j] < array[minIndex]) {
-                    minIndex = j;
+        for (IntNode i = head; i != null; i = i.next) {
+            IntNode min = i;
+            for (IntNode j = i.next; j != null; j = j.next) {
+                if (j.data < min.data) {
+                    min = j;
                 }
             }
 
-            if (minIndex != i) {
-                int temp = array[i];
-                array[i] = array[minIndex];
-                array[minIndex] = temp;
+            if (min != i) {
+                int temp = i.data;
+                i.data = min.data;
+                min.data = temp;
             }
         }
+
+        return head;
     }
-    public static void sort(float[] array) {
-        if (array == null || array.length < 2) {
-            return;
+
+    public static LongNode sort(LongNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        int n = array.length;
-        for (int i = 0; i < n - 1; i++) {
-            int minIndex = i;
-
-            for (int j = i + 1; j < n; j++) {
-                if (array[j] < array[minIndex]) {
-                    minIndex = j;
+        for (LongNode i = head; i != null; i = i.next) {
+            LongNode min = i;
+            for (LongNode j = i.next; j != null; j = j.next) {
+                if (j.data < min.data) {
+                    min = j;
                 }
             }
 
-            if (minIndex != i) {
-                float temp = array[i];
-                array[i] = array[minIndex];
-                array[minIndex] = temp;
+            if (min != i) {
+                long temp = i.data;
+                i.data = min.data;
+                min.data = temp;
             }
         }
+
+        return head;
     }
-    public static void sort(double[] array) {
-        if (array == null || array.length < 2) {
-            return;
+
+    public static FloatNode sort(FloatNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        int n = array.length;
-        for (int i = 0; i < n - 1; i++) {
-            int minIndex = i;
-
-            for (int j = i + 1; j < n; j++) {
-                if (array[j] < array[minIndex]) {
-                    minIndex = j;
+        for (FloatNode i = head; i != null; i = i.next) {
+            FloatNode min = i;
+            for (FloatNode j = i.next; j != null; j = j.next) {
+                if (j.data < min.data) {
+                    min = j;
                 }
             }
 
-            if (minIndex != i) {
-                double temp = array[i];
-                array[i] = array[minIndex];
-                array[minIndex] = temp;
+            if (min != i) {
+                float temp = i.data;
+                i.data = min.data;
+                min.data = temp;
             }
         }
+
+        return head;
     }
-    public static void sort(long[] array) {
-        if (array == null || array.length < 2) {
-            return;
+
+    public static DoubleNode sort(DoubleNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        int n = array.length;
-        for (int i = 0; i < n - 1; i++) {
-            int minIndex = i;
-
-            for (int j = i + 1; j < n; j++) {
-                if (array[j] < array[minIndex]) {
-                    minIndex = j;
+        for (DoubleNode i = head; i != null; i = i.next) {
+            DoubleNode min = i;
+            for (DoubleNode j = i.next; j != null; j = j.next) {
+                if (j.data < min.data) {
+                    min = j;
                 }
             }
 
-            if (minIndex != i) {
-                long temp = array[i];
-                array[i] = array[minIndex];
-                array[minIndex] = temp;
+            if (min != i) {
+                double temp = i.data;
+                i.data = min.data;
+                min.data = temp;
             }
         }
+
+        return head;
     }
 }

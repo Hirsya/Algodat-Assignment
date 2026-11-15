@@ -1,137 +1,241 @@
 public class QuickSort {
-    public static void sort(int[] array) {
-        if (array == null || array.length < 2) return;
-    sort(array, 0, array.length - 1);
+    public static IntNode sort(IntNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        sort(head, last(head));
+        return head;
     }
-    public static void sort(int[] array, int low, int high) {
-        while (low < high) {
-            int p = partition(array, low, high);
-            if (p - low < high - p) {
-                sort(array, low, p - 1);
-                low = p + 1;
+
+    static void sort(IntNode first, IntNode last) {
+        while (first != null && last != null && first != last && first.prev != last) {
+            IntNode p = partition(first, last);
+
+            int leftSize = 0;
+            for (IntNode n = first; n != p; n = n.next) {
+                leftSize++;
+            }
+
+            int rightSize = 0;
+            for (IntNode n = last; n != p; n = n.prev) {
+                rightSize++;
+            }
+
+            if (leftSize < rightSize) {
+                sort(first, p.prev);
+                first = p.next;
             } else {
-                sort(array, p + 1, high);
-                high = p - 1;
+                sort(p.next, last);
+                last = p.prev;
             }
         }
-    }
-    public static int partition(int[] array, int low, int high) {
-        int pivot = array[high];   
-        int i = low;            
-
-        for (int j = low; j < high; j++) {
-            if (array[j] < pivot) {
-                int temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-                i++;
-            }
-        }
-        int temp = array[i];
-        array[i] = array[high];
-        array[high] = temp;
-        return i;               
     }
 
-    public static void sort(long[] array) {
-        if (array == null || array.length < 2) return;
-    sort(array, 0, array.length - 1);
-    }
-    public static void sort(long[] array, int low, int high) {
-        while (low < high) {
-            int p = partition(array, low, high);
-            if (p - low < high - p) {
-                sort(array, low, p - 1);
-                low = p + 1;
-            } else {
-                sort(array, p + 1, high);
-                high = p - 1;
-            }
-        }
-    }
-    public static int partition(long[] array, int low, int high) {
-        long pivot = array[high];
-        int i = low;
+    static IntNode partition(IntNode first, IntNode last) {
+        int pivot = last.data;
+        IntNode i = first;
 
-        for (int j = low; j < high; j++) {
-            if (array[j] < pivot) {
-                long temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-                i++;
+        for (IntNode j = first; j != last; j = j.next) {
+            if (j.data < pivot) {
+                int temp = i.data;
+                i.data = j.data;
+                j.data = temp;
+                i = i.next;
             }
         }
-        long temp = array[i];
-        array[i] = array[high];
-        array[high] = temp;
+
+        int temp = i.data;
+        i.data = last.data;
+        last.data = temp;
         return i;
     }
 
-    public static void sort(float[] array) {
-        if (array == null || array.length < 2) return;
-    sort(array, 0, array.length - 1);
-    }
-    public static void sort(float[] array, int low, int high) {
-        while (low < high) {
-            int p = partition(array, low, high);
-            if (p - low < high - p) {
-                sort(array, low, p - 1);
-                low = p + 1;
-            } else {
-                sort(array, p + 1, high);
-                high = p - 1;
-            }
+    static IntNode last(IntNode head) {
+        IntNode cur = head;
+        while (cur.next != null) {
+            cur = cur.next;
         }
+        return cur;
     }
-    public static int partition(float[] array, int low, int high) {
-        float pivot = array[high];
-        int i = low;
 
-        for (int j = low; j < high; j++) {
-            if (array[j] < pivot) {
-                float temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-                i++;
+    public static LongNode sort(LongNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        sort(head, last(head));
+        return head;
+    }
+
+    static void sort(LongNode first, LongNode last) {
+        while (first != null && last != null && first != last && first.prev != last) {
+            LongNode p = partition(first, last);
+
+            int leftSize = 0;
+            for (LongNode n = first; n != p; n = n.next) {
+                leftSize++;
+            }
+
+            int rightSize = 0;
+            for (LongNode n = last; n != p; n = n.prev) {
+                rightSize++;
+            }
+
+            if (leftSize < rightSize) {
+                sort(first, p.prev);
+                first = p.next;
+            } else {
+                sort(p.next, last);
+                last = p.prev;
             }
         }
-        float temp = array[i];
-        array[i] = array[high];
-        array[high] = temp;
+    }
+
+    static LongNode partition(LongNode first, LongNode last) {
+        long pivot = last.data;
+        LongNode i = first;
+
+        for (LongNode j = first; j != last; j = j.next) {
+            if (j.data < pivot) {
+                long temp = i.data;
+                i.data = j.data;
+                j.data = temp;
+                i = i.next;
+            }
+        }
+
+        long temp = i.data;
+        i.data = last.data;
+        last.data = temp;
         return i;
     }
 
-    public static void sort(double[] array) {
-        if (array == null || array.length < 2) return;
-    sort(array, 0, array.length - 1);
-    }
-    public static void sort(double[] array, int low, int high) {
-        while (low < high) {
-            int p = partition(array, low, high);
-            if (p - low < high - p) {
-                sort(array, low, p - 1);
-                low = p + 1;
-            } else {
-                sort(array, p + 1, high);
-                high = p - 1;
-            }
+    static LongNode last(LongNode head) {
+        LongNode cur = head;
+        while (cur.next != null) {
+            cur = cur.next;
         }
+        return cur;
     }
-    public static int partition(double[] array, int low, int high) {
-        double pivot = array[high];
-        int i = low;
 
-        for (int j = low; j < high; j++) {
-            if (array[j] < pivot) {
-                double temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-                i++;
+    public static FloatNode sort(FloatNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        sort(head, last(head));
+        return head;
+    }
+
+    static void sort(FloatNode first, FloatNode last) {
+        while (first != null && last != null && first != last && first.prev != last) {
+            FloatNode p = partition(first, last);
+
+            int leftSize = 0;
+            for (FloatNode n = first; n != p; n = n.next) {
+                leftSize++;
+            }
+
+            int rightSize = 0;
+            for (FloatNode n = last; n != p; n = n.prev) {
+                rightSize++;
+            }
+
+            if (leftSize < rightSize) {
+                sort(first, p.prev);
+                first = p.next;
+            } else {
+                sort(p.next, last);
+                last = p.prev;
             }
         }
-        double temp = array[i];
-        array[i] = array[high];
-        array[high] = temp;
+    }
+
+    static FloatNode partition(FloatNode first, FloatNode last) {
+        float pivot = last.data;
+        FloatNode i = first;
+
+        for (FloatNode j = first; j != last; j = j.next) {
+            if (j.data < pivot) {
+                float temp = i.data;
+                i.data = j.data;
+                j.data = temp;
+                i = i.next;
+            }
+        }
+
+        float temp = i.data;
+        i.data = last.data;
+        last.data = temp;
         return i;
+    }
+
+    static FloatNode last(FloatNode head) {
+        FloatNode cur = head;
+        while (cur.next != null) {
+            cur = cur.next;
+        }
+        return cur;
+    }
+
+    public static DoubleNode sort(DoubleNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        sort(head, last(head));
+        return head;
+    }
+
+    static void sort(DoubleNode first, DoubleNode last) {
+        while (first != null && last != null && first != last && first.prev != last) {
+            DoubleNode p = partition(first, last);
+
+            int leftSize = 0;
+            for (DoubleNode n = first; n != p; n = n.next) {
+                leftSize++;
+            }
+
+            int rightSize = 0;
+            for (DoubleNode n = last; n != p; n = n.prev) {
+                rightSize++;
+            }
+
+            if (leftSize < rightSize) {
+                sort(first, p.prev);
+                first = p.next;
+            } else {
+                sort(p.next, last);
+                last = p.prev;
+            }
+        }
+    }
+
+    static DoubleNode partition(DoubleNode first, DoubleNode last) {
+        double pivot = last.data;
+        DoubleNode i = first;
+
+        for (DoubleNode j = first; j != last; j = j.next) {
+            if (j.data < pivot) {
+                double temp = i.data;
+                i.data = j.data;
+                j.data = temp;
+                i = i.next;
+            }
+        }
+
+        double temp = i.data;
+        i.data = last.data;
+        last.data = temp;
+        return i;
+    }
+
+    static DoubleNode last(DoubleNode head) {
+        DoubleNode cur = head;
+        while (cur.next != null) {
+            cur = cur.next;
+        }
+        return cur;
     }
 }

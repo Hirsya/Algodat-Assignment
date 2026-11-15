@@ -1,65 +1,97 @@
 public class InsertionSort {
-    public static void sort(int[] array) {
-        if (array == null || array.length < 2) {
-            return;
+    public static IntNode sort(IntNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        for (int i = 1; i < array.length; i++) {
-            int key = array[i];
-            int j = i - 1;
-            while (j >= 0 && array[j] > key) {
-                array[j + 1] = array[j];
-                j--;
+        for (IntNode cur = head.next; cur != null; cur = cur.next) {
+            int key = cur.data;
+            IntNode j = cur.prev;
+
+            while (j != null && j.data > key) {
+                j.next.data = j.data;
+                j = j.prev;
             }
-            array[j + 1] = key;
+
+            if (j == null) {
+                head.data = key;
+            } else {
+                j.next.data = key;
+            }
         }
+
+        return head;
     }
 
-    public static void sort(long[] array) {
-        if (array == null || array.length < 2) {
-            return;
+    public static LongNode sort(LongNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        for (int i = 1; i < array.length; i++) {
-            long key = array[i];
-            int j = i - 1;
-            while (j >= 0 && array[j] > key) {
-                array[j + 1] = array[j];
-                j--;
+        for (LongNode cur = head.next; cur != null; cur = cur.next) {
+            long key = cur.data;
+            LongNode j = cur.prev;
+
+            while (j != null && j.data > key) {
+                j.next.data = j.data;
+                j = j.prev;
             }
-            array[j + 1] = key;
+
+            if (j == null) {
+                head.data = key;
+            } else {
+                j.next.data = key;
+            }
         }
+
+        return head;
     }
 
-    public static void sort(float[] array) {
-        if (array == null || array.length < 2) {
-            return;
+    public static FloatNode sort(FloatNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        for (int i = 1; i < array.length; i++) {
-            float key = array[i];
-            int j = i - 1;
-            while (j >= 0 && array[j] > key) {
-                array[j + 1] = array[j];
-                j--;
+        for (FloatNode cur = head.next; cur != null; cur = cur.next) {
+            float key = cur.data;
+            FloatNode j = cur.prev;
+
+            while (j != null && j.data > key) {
+                j.next.data = j.data;
+                j = j.prev;
             }
-            array[j + 1] = key;
+
+            if (j == null) {
+                head.data = key;
+            } else {
+                j.next.data = key;
+            }
         }
+
+        return head;
     }
 
-    public static void sort(double[] array) {
-        if (array == null || array.length < 2) {
-            return;
+    public static DoubleNode sort(DoubleNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        for (int i = 1; i < array.length; i++) {
-            double key = array[i];
-            int j = i - 1;
-            while (j >= 0 && array[j] > key) {
-                array[j + 1] = array[j];
-                j--;
+        for (DoubleNode cur = head.next; cur != null; cur = cur.next) {
+            double key = cur.data;
+            DoubleNode j = cur.prev;
+
+            while (j != null && j.data > key) {
+                j.next.data = j.data;
+                j = j.prev;
             }
-            array[j + 1] = key;
+
+            if (j == null) {
+                head.data = key;
+            } else {
+                j.next.data = key;
+            }
         }
+
+        return head;
     }
 }

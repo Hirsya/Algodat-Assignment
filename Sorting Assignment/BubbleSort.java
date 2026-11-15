@@ -1,90 +1,101 @@
 public class BubbleSort {
-    public static void sort(int[] array){
-        if (array == null || array.length < 2) {
-            return;
+    public static IntNode sort(IntNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        int n = array.length;
-        for (int pass = 0 ; pass < n -1; pass++){
-            boolean swapped = false ;
-            for (int i = 0; i < n -1 - pass; i++){
-                if(array[i] > array [i +1]){
-                    int temp = array [i];
-                    array[i] = array [i + 1];
-                    array[i + 1]= temp;
+        boolean swapped;
+        IntNode end = null;
+        do {
+            swapped = false;
+            IntNode cur = head;
+            while (cur.next != end) {
+                if (cur.data > cur.next.data) {
+                    int temp = cur.data;
+                    cur.data = cur.next.data;
+                    cur.next.data = temp;
                     swapped = true;
                 }
+                cur = cur.next;
             }
-            if (!swapped){
-                return;
-            }
-        }
+            end = cur;
+        } while (swapped);
+
+        return head;
     }
 
-    public static void sort(long[] array){
-        if (array == null || array.length < 2) {
-            return;
+    public static LongNode sort(LongNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        int n = array.length;
-        for (int pass = 0 ; pass < n -1; pass++){
-            boolean swapped = false ;
-            for (int i = 0; i < n -1 - pass; i++){
-                if(array[i] > array [i +1]){
-                    long temp = array [i];
-                    array[i] = array [i + 1];
-                    array[i + 1]= temp;
+        boolean swapped;
+        LongNode end = null;
+        do {
+            swapped = false;
+            LongNode cur = head;
+            while (cur.next != end) {
+                if (cur.data > cur.next.data) {
+                    long temp = cur.data;
+                    cur.data = cur.next.data;
+                    cur.next.data = temp;
                     swapped = true;
                 }
+                cur = cur.next;
             }
-            if (!swapped){
-                return;
-            }
-        }
+            end = cur;
+        } while (swapped);
+
+        return head;
     }
 
-    public static void sort(double[] array){
-        if (array == null || array.length < 2) {
-            return;
+    public static FloatNode sort(FloatNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        int n = array.length;
-        for (int pass = 0 ; pass < n -1; pass++){
-            boolean swapped = false ;
-            for (int i = 0; i < n -1 - pass; i++){
-                if(array[i] > array [i +1]){
-                    double temp = array [i];
-                    array[i] = array [i + 1];
-                    array[i + 1]= temp;
+        boolean swapped;
+        FloatNode end = null;
+        do {
+            swapped = false;
+            FloatNode cur = head;
+            while (cur.next != end) {
+                if (cur.data > cur.next.data) {
+                    float temp = cur.data;
+                    cur.data = cur.next.data;
+                    cur.next.data = temp;
                     swapped = true;
                 }
+                cur = cur.next;
             }
-            if (!swapped){
-                return;
-            }
-        }
+            end = cur;
+        } while (swapped);
+
+        return head;
     }
 
-    public static void sort(float[] array){
-        if (array == null || array.length < 2) {
-            return;
+    public static DoubleNode sort(DoubleNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        int n = array.length;
-        for (int pass = 0 ; pass < n -1; pass++){
-            boolean swapped = false ;
-            for (int i = 0; i < n -1 - pass; i++){
-                if(array[i] > array [i +1]){
-                    float temp = array [i];
-                    array[i] = array [i + 1];
-                    array[i + 1]= temp;
+        boolean swapped;
+        DoubleNode end = null;
+        do {
+            swapped = false;
+            DoubleNode cur = head;
+            while (cur.next != end) {
+                if (cur.data > cur.next.data) {
+                    double temp = cur.data;
+                    cur.data = cur.next.data;
+                    cur.next.data = temp;
                     swapped = true;
                 }
+                cur = cur.next;
             }
-            if (!swapped){
-                return;
-            }
-        }
+            end = cur;
+        } while (swapped);
+
+        return head;
     }
 }
-
